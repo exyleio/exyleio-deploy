@@ -1,0 +1,38 @@
+version: "3"
+services:
+  redis:
+    image: "redis:7-alpine"
+    restart: unless-stopped
+    expose:
+      - 6379
+    volumes:
+      - ./redis_data:/data
+
+  pocketbase:
+    image: spectado/pocketbase:latest
+    restart: unless-stopped
+    expose:
+      - 8090
+    volumes:
+      - ./pb_data:/pb_data
+
+  api:
+    depends_on:
+      - redis
+      - pocketbase
+    image: developomp/exyleio-api:latest
+    restart: unless-stopped
+    ports:
+      - 80:8000
+    expose:
+      - 8000
+    volumes:
+      - ./api_log:/log
+
+  discord-bot:
+    depends_on:
+      - api
+    image: developomp/exyleio-discord-bot:latest
+    environment:
+      DISCORD_BOT_TOKEN: ${DISCORD_BOT_TOKEN}
+      DISCORD_BOT_ID: ${DISCORD_BOT_ID}
