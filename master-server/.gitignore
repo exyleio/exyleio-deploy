@@ -3,3 +3,4 @@ pb_data/
 redis_data/
 .env
 docker-compose.prod.yml
+exyleio-master-server-log-*

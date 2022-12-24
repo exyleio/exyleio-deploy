@@ -12,6 +12,7 @@ print_help() {
     echo "  restart"
     echo "    - Updates"
     echo "  backup"
+    echo "    - Creates an archive of related to be downloaded"
 
 }
 
@@ -36,12 +37,11 @@ restart() {
 
 backup() {
 
-    # copy API log
-    # pocketbase data
-    # redis DB
-    # zip
-    # download
-    echo not implemented
+    # fix redis data permission
+    sudo chmod -R +rw ./redis_data
+
+    # zip everything with UTC timestamp
+    zip -r exyleio-master-server-log-$(date --utc +%Y%m%d_%H%M%SZ).zip api_log pb_data redis_data
 
 }
 
