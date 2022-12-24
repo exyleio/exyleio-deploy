@@ -10,7 +10,7 @@ print_help() {
     echo "  setup"
     echo "    - Installs required programs and shit"
     echo "  restart"
-    echo "    - Updates"
+    echo "    - Relaunch updated versions of the containers"
     echo "  connect | attach <redis|pocketbase|pb|api|discord|discord-bot|bot>"
     echo "    - opens a shell in the appropriate container"
     echo "  backup"
@@ -29,11 +29,9 @@ setup() {
 
 restart() {
 
-    docker compose stop
-    docker compose rm -f
     docker compose pull
     docker compose convert >docker-compose.prod.yml
-    docker compose -f docker-compose.prod.yml up -d --remove-orphans
+    docker compose --file docker-compose.prod.yml up --detach --build
 
 }
 
