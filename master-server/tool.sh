@@ -11,6 +11,8 @@ print_help() {
     echo "    - Installs required programs and shit"
     echo "  restart"
     echo "    - Updates"
+    echo "  connect | attach <redis|pocketbase|pb|api|discord|discord-bot|bot>"
+    echo "    - opens a shell in the appropriate container"
     echo "  backup"
     echo "    - Creates an archive of related to be downloaded"
 
@@ -35,6 +37,31 @@ restart() {
 
 }
 
+connect() {
+
+    case "$1" in
+    redis)
+        container_name="master-server-redis-1"
+        ;;
+    pocketbase | pb)
+        container_name="master-server-pocketbase-1"
+        ;;
+    api)
+        container_name="master-server-api-1"
+        ;;
+    discord | discord-bot | bot)
+        container_name="master-server-discord-bot-1"
+        ;;
+    *)
+        echo "Nah, wrong name bro"
+        exit 1
+        ;;
+    esac
+
+    docker exec -it $container_name sh
+
+}
+
 backup() {
 
     # fix redis data permission
@@ -45,12 +72,19 @@ backup() {
 
 }
 
+###
+###  main
+###
+
 case $1 in
 setup)
     setup
     ;;
 restart)
     restart
+    ;;
+connect | attach)
+    connect $2
     ;;
 backup)
     backup
