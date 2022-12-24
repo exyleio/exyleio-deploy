@@ -17,7 +17,10 @@ print_help() {
 
 setup() {
 
-    pacman -S docker zip lazydocker
+    sudo pacman -S zip
+
+    # install lazydocker
+    curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash
 
 }
 
