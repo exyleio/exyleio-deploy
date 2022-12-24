@@ -3,10 +3,12 @@ services:
   redis:
     image: "redis:7-alpine"
     restart: unless-stopped
+    command: redis-server /etc/redis/redis.conf
     expose:
       - 6379
     volumes:
       - ./redis_data:/data
+      - ./redis.conf:/etc/redis/redis.conf
 
   pocketbase:
     image: spectado/pocketbase:latest
