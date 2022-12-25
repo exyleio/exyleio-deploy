@@ -4,8 +4,7 @@ services:
     image: "redis:7-alpine"
     restart: unless-stopped
     command: redis-server /etc/redis/redis.conf
-    expose:
-      - 6379
+    network_mode: "host"
     volumes:
       - ./redis_data:/data
       - ./redis.conf:/etc/redis/redis.conf
@@ -13,8 +12,8 @@ services:
   pocketbase:
     image: spectado/pocketbase:latest
     restart: unless-stopped
-    expose:
-      - 8090
+    command: pocketbase serve --http=0.0.0.0:8090
+    network_mode: "host"
     volumes:
       - ./pb_data:/pb_data
 
@@ -24,10 +23,7 @@ services:
       - pocketbase
     image: developomp/exyleio-api:latest
     restart: unless-stopped
-    ports:
-      - 80:8000
-    expose:
-      - 8000
+    network_mode: "host"
     volumes:
       - ./api_log:/log
 
@@ -35,6 +31,7 @@ services:
     depends_on:
       - api
     image: developomp/exyleio-discord-bot:latest
+    network_mode: "host"
     environment:
       DISCORD_BOT_TOKEN: ${DISCORD_BOT_TOKEN}
       DISCORD_BOT_ID: ${DISCORD_BOT_ID}
