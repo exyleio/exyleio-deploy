@@ -74,6 +74,14 @@ backup() {
 ###  main
 ###
 
+# cd into the directory where the script exists
+# https://stackoverflow.com/a/4774063
+SCRIPTPATH="$(
+    cd -- "$(dirname "$0")" >/dev/null 2>&1
+    pwd -P
+)"
+cd $SCRIPTPATH
+
 case $1 in
 setup)
     setup
