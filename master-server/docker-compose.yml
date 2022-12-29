@@ -13,7 +13,6 @@ services:
   api:
     depends_on:
       - redis
-      - pocketbase
     image: developomp/exyleio-api:latest
     restart: unless-stopped
     ports:
