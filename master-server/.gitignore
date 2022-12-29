@@ -1,5 +1,4 @@
 api_log/
-pb_data/
 redis_data/
 .env
 docker-compose.prod.yml
