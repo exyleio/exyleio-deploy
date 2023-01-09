@@ -6,7 +6,6 @@ services:
     expose:
       - 6379
     volumes:
-      - ./redis-stack.conf:/redis-stack.conf
       - ./redis_stack_data/:/data
 
   api:
