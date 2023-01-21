@@ -16,7 +16,7 @@ services:
     extra_hosts:
       - host.docker.internal:host-gateway
     ports:
-      - 80:8000
+      - 8000:8000
     volumes:
       - ./api_log:/log
       - ./serviceAccountKey.json:/app/serviceAccountKey.json
@@ -28,3 +28,10 @@ services:
     environment:
       DISCORD_BOT_TOKEN: ${DISCORD_BOT_TOKEN}
       DISCORD_BOT_ID: ${DISCORD_BOT_ID}
+
+  web:
+    depends_on:
+      - api
+    image: developomp/exyleio-web:latest
+    ports:
+      - 80:3000
