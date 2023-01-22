@@ -20,10 +20,10 @@ print_help() {
 
 setup() {
 
-    sudo pacman -S zip
+    pacman -Sy archlinux-keyring
+    sudo pacman -Syyu zip docker docker-compose git
 
-    # install lazydocker
-    curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash
+    reboot
 
 }
 
