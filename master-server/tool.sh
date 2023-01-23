@@ -45,9 +45,9 @@ setup() {
 
 restart() {
 
-    docker compose pull
-    docker compose convert >docker-compose.prod.yml
-    docker compose --file docker-compose.prod.yml up --detach --build --remove-orphans
+    docker-compose pull
+    docker-compose convert >docker-compose.prod.yml
+    docker-compose --file docker-compose.prod.yml up --detach --build --remove-orphans
 
 }
 
