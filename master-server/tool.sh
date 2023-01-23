@@ -3,7 +3,7 @@
 print_help() {
 
     echo "Exyle.io Deployment Helper Utility"
-    echo "GitHub: https://github.com/exyleio/exyleio-scripts"
+    echo "GitHub: https://github.com/exyleio/exyleio-deploy"
     echo "- Assumes it's running on Arch Linux"
     echo
     echo "Commands:"
