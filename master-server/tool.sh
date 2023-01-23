@@ -79,11 +79,10 @@ connect() {
 
 backup() {
 
-    # fix redis data permission
-    sudo chmod -R +rw ./redis_data
+    cd ~
 
     # zip everything with UTC timestamp
-    zip -r exyleio-master-server-log-$(date --utc +%Y%m%d_%H%M%SZ).zip api_log pb_data redis_data
+    zip -r exyleio-master-server-backup-$(date --utc +%Y%m%d_%H%M%SZ).zip exyleio-deploy
 
 }
 
