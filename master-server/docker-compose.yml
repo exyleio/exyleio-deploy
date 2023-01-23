@@ -21,6 +21,13 @@ services:
       - ./api_log:/log
       - ./serviceAccountKey.json:/app/serviceAccountKey.json
 
+  web:
+    depends_on:
+      - api
+    image: developomp/exyleio-web:latest
+    ports:
+      - 3000:3000
+
   discord-bot:
     depends_on:
       - api
@@ -28,10 +35,3 @@ services:
     environment:
       DISCORD_BOT_TOKEN: ${DISCORD_BOT_TOKEN}
       DISCORD_BOT_ID: ${DISCORD_BOT_ID}
-
-  web:
-    depends_on:
-      - api
-    image: developomp/exyleio-web:latest
-    ports:
-      - 3000:3000
