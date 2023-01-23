@@ -4,7 +4,7 @@ print_help() {
 
     echo "Exyle.io Deployment Helper Utility"
     echo "GitHub: https://github.com/exyleio/exyleio-deploy"
-    echo "- Assumes it's running on Arch Linux"
+    echo "- Assumes it's running on Amazon Linux (based on fedora Linux)"
     echo
     echo "Commands:"
     echo "  setup"
@@ -20,10 +20,26 @@ print_help() {
 
 setup() {
 
-    pacman -Sy archlinux-keyring
-    sudo pacman -Syyu zip docker docker-compose git
+    cd ~
 
-    reboot
+    # update package repository
+    sudo yum update -y
+
+    # install git
+    sudo yum install git -y
+
+    # install docker
+    sudo yum install docker -y
+    sudo usermod -a -G docker ec2-user
+    sudo systemctl enable docker.service
+    id ec2-user
+    newgrp docker
+
+    # install docker compose
+    sudo curl -L https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+    sudo chmod +x /usr/local/bin/docker-compose
+
+    git clone https://github.com/exyleio/exyleio-deploy.git
 
 }
 
