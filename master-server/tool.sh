@@ -58,11 +58,11 @@ connect() {
     redis)
         container_name="master-server-redis-1"
         ;;
-    pocketbase | pb)
-        container_name="master-server-pocketbase-1"
-        ;;
     api)
         container_name="master-server-api-1"
+        ;;
+    web)
+        container_name="master-server-web-1"
         ;;
     discord | discord-bot | bot)
         container_name="master-server-discord-bot-1"
