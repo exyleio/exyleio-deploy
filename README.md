@@ -1,5 +1,1 @@
-# Exyle.io Scripts
-
-- submit issues [here](https://github.com/exyleio/exyleio/issues)
-
-## [Documentation](https://exyleio-docs.web.app/docs/projects/deploy/overview)
+Exyle.io has merged with [War Brokers](https://github.com/War-Brokers)
